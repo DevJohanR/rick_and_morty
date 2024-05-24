@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import Button from "../Button/Button";
 export default function SearchBar(props) {
 
    const [id, setId] = useState("");
@@ -15,7 +15,8 @@ export default function SearchBar(props) {
    return (
       <div>
          <input type='search' onChange={handleChange} value={id} />
-         <button onClick={()=>props.onSearch(id)}>Agregar</button>
+         <Button name={"Agregar"} onClick={()=>props.onSearch(id)} />
+
       </div>
    );
 }

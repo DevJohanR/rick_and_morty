@@ -12,6 +12,17 @@ function App() {
    const [characters, setCharacters] = useState([]);
 
    const onSearch = (id) => {
+
+      const numericId = Number(id)
+      
+      const characterExists = characters.some((char) => char.id === numericId);
+
+      if(characterExists) {
+         window.alert('¡El personaje ya esta en la lista!')
+         return;
+      }
+
+
       axios(`https://rym2.up.railway.app/api/character/${id}?key=pi-riascosjohan333`)
           .then(({ data }) => {
               if (data.name) {
