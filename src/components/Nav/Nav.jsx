@@ -7,9 +7,9 @@ const Nav = (props) => {
   return (
     <div>
        <SearchBar onSearch={props.onSearch} />
-       <Button name={"Random"} onClick={()=>props.onRandomSearch}  />
+       <Button name={"Random"} onClick={props.onRandomSearch}  />
        <Link to="/about"><Button name={"About"} /></Link>
-       <Link to="/"><Button name={"Home"} /></Link>
+       <Link to="/home"><Button name={"Home"} /></Link>
 
       
     </div>

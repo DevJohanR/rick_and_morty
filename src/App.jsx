@@ -10,10 +10,14 @@ import Welcome from './components/Welcome/Welcome.jsx';
 import About from './components/About/About.jsx';
 import Detail from './components/Detail/Detail.jsx';
 //import characters, { Rick } from './data.js';
+import Form from './components/Form/Form.jsx';
+import { useLocation } from 'react-router-dom';
 
 function App() {
 
+
    const [characters, setCharacters] = useState([]);
+   const location = useLocation();
 
    const onSearch = (id) => {
 
@@ -61,11 +65,12 @@ function App() {
 
    return (
       <div className='App'>
-         <Nav onSearch={onSearch} onRandomSearch={onRandomSearch} />
+          {/* Renderiza Nav solo si no estamos en la ruta de inicio */}
+          {location.pathname !== '/' && <Nav onSearch={onSearch} onRandomSearch={onRandomSearch} />}
 
          <Routes>
-           
-            <Route path='/' element={<Cards characters={characters} onClose={onClose} />} />
+         <Route path='/' element={<Form/>} />
+            <Route path='/home' element={<Cards characters={characters} onClose={onClose} />} />
             <Route path='/about' element={<About/>} />
             <Route path='/detail/:id' element={<Detail/>} />
          </Routes>
