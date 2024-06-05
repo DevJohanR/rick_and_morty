@@ -1,50 +1,47 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import Button from "../Button/Button.jsx"
+import React, {useState} from 'react'
 
 const Form = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
 
-    const handleSubmit =(event) =>{
-        event.preventDefault();
-        console.log('Email', email);
-        console.log('Password', password);
-    }
+const [userData, setUserData] = useState({email: '', password: ''});
+const [errors, setErrors] = useState("")
+
+// Funcion para manejar el cambio en los inputs
+const handleInputChange = (e)=>{
+const { name, value } = e.target;
+setUserData({
+  ...userData,
+  [name]:value,
+});
+
+// Loggear los cambios en la consola
+console.log(`Campo actualizado: ${name}, Nuevo valor: ${value}`);
+};
+
 
   return (
     <div>
-        <div>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="email">Email:</label>
-                    <input
-                    type="email"
-                    id="email"
-                    value={email}
-                    onChange={(e)=>setEmail(e.target.value)}
-                    required
-                    />{/* se debe realizar ruta en server */}
-                </div>
-                <div>
-                    <label htmlFor="password">Password:</label>
-                    <input
-                    type="password"
-                    id="password"
-                    value={password}
-                    onChange={(e)=>setPassword(e.target.value)}
-                    required
-                    />
-                    
-                </div>
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-
-
-        <Link to="/home">
-        <Button name={"Entrar"} />
-        </Link>
+        <form action="">
+            
+            <label htmlFor="email">Email</label>
+            <input 
+            type="text"
+            name="email"
+            placeholder='Tu Email Aqui'
+            id="password"
+            value={userData.email}
+            onChange={handleInputChange}
+             />
+            <label htmlFor="password">Password</label>
+            <input
+            type="password"
+            name="password"
+            placeholder='Tu Contraseña aqui'
+            id='password'
+            value={userData.password}
+            onChange={handleInputChange}
+             />
+            <button type='submit'>Submit</button>
+        </form>
     </div>
   )
 }
